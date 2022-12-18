@@ -37,13 +37,17 @@ add_compile_options(-Werror=unused-result)
 add_compile_options(-Werror=conversion)
 add_compile_options(-Werror=type-limits)
 add_compile_options(-Werror=missing-field-initializers)
-add_compile_options(-Werror=terminate)
 
 include(CheckCXXCompilerFlag)
 
 check_cxx_compiler_flag("-Werror=integer-overflow" COMPILER_FEATURES_INTEGER_OVERFLOW_WARNING_SUPPORTED)
 if(COMPILER_FEATURES_INTEGER_OVERFLOW_WARNING_SUPPORTED)
     add_compile_options(-Werror=integer-overflow)
+endif()
+
+check_cxx_compiler_flag("-Werror=terminate -Werror=unknown-warning-option" COMPILER_FEATURES_TERMINATE_WARNING_SUPPORTED)
+if(COMPILER_FEATURES_TERMINATE_WARNING_SUPPORTED)
+    add_compile_options(-Werror=terminate)
 endif()
 
 check_cxx_compiler_flag("-Werror=int-in-bool-context" COMPILER_FEATURES_INT_IN_BOOL_CONTEXT_WARNING_SUPPORTED)
